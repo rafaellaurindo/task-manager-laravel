@@ -1,0 +1,34 @@
+# v2 syntax
+version: '2'
+
+# Named volumes
+volumes:
+  # MySQL Data
+  task-manager-mysql-data:
+    driver: local
+
+services:
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: task-manager-mysql
+    volumes:
+      - task-manager-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=task-manager
+      - MYSQL_DATABASE=task-manager
+      - MYSQL_USER=task-manager
+      - MYSQL_PASSWORD=task-manager
+
+  # PHP (with Caddy)
+  app:
+    image: ambientum/php:7.1-caddy
+    container_name: task-manager-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    links:
+      - mysql
