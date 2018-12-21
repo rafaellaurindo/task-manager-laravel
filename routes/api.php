@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+/**
+ * Set prefix /v1 in all API routes
+ */
+Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function () {
+
+    /**
+     * Tasks API Routes
+     */
+    Route::resource('tasks', 'TasksController', ['except' => 'create', 'edit']);
 });
