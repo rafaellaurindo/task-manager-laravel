@@ -3,9 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Task extends Model
+/**
+ * Class Task.
+ *
+ * @package namespace App;
+ */
+class Task extends Model implements Transformable
 {
+    use TransformableTrait;
+
     /**
      * Table name of this Model.
      *
