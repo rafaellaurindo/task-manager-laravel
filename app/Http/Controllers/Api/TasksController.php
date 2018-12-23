@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\TaskServices;
 use App\Repositories\Contracts\TaskRepository;
 
 class TasksController extends Controller
@@ -11,10 +12,16 @@ class TasksController extends Controller
     /**
      * @var TaskRepository
      */
-    protected $repository;
+    protected $taskRepository;
 
-    public function __construct(TaskRepository $repository){
-        $this->repository = $repository;
+    /**
+     * @var TaskServices
+     */
+    protected $taskService;
+
+    public function __construct(TaskRepository $taskRepository, TaskServices $taskService){
+        $this->taskRepository = $taskRepository;
+        $this->taskService = $taskService;
     }
 
     /**
@@ -26,7 +33,7 @@ class TasksController extends Controller
     public function index(Request $request)
     {
         $limit = $request->limit ?? 10;
-        $tasks = $this->repository->skipPresenter()->paginate($limit);
+        $tasks = $this->taskRepository->skipPresenter()->paginate($limit);
 
         return response()->json($tasks, 200);
     }
