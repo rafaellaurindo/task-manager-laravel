@@ -51,4 +51,17 @@ class TasksController extends Controller
         return response()->json($task, 200);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        $task = $this->taskService->store($request->all());
+
+        return response()->json($task, 201);
+    }
+
 }
