@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
+use Prettus\Validator\Exceptions\ValidatorException;
+use Symfony\Component\Debug\Exception\FlattenException;
 
 class Handler extends ExceptionHandler
 {
@@ -13,7 +16,12 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        \Illuminate\Auth\AuthenticationException::class,
+        \Illuminate\Auth\Access\AuthorizationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+        \Illuminate\Session\TokenMismatchException::class,
+        \Illuminate\Validation\ValidationException::class,
     ];
 
     /**
@@ -29,8 +37,11 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
-     * @return void
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     *
+     * @param Exception $exception
+     * @return mixed|void
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
@@ -47,5 +58,38 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function prepareJsonResponse($request, Exception $exception)
+    {
+        if ($exception instanceof ValidatorException) {
+            return response()->json([
+                'exception'  => get_class($exception),
+                'message'    => $exception->getMessageBag(),
+            ], 400);
+        }
+
+        $exception = FlattenException::create($exception);
+
+        if (config('app.debug')) {
+            $message = $exception->getMessage();
+        } else {
+            $message = Response::$statusTexts[$exception->getStatusCode()];
+        }
+
+        return response()->json([
+            'exception'  => $exception->getClass(),
+            'message'    => $message,
+            'trace'      => $this->getTrace($exception)
+        ], $exception->getStatusCode());
+    }
+
+    private function getTrace($exception)
+    {
+        if (config('app.debug')) {
+            return 'file: ' . $exception->getFile() . ' line: ' . $exception->getLine();
+        }
+
+        return null;
     }
 }
