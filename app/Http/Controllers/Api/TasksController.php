@@ -37,4 +37,18 @@ class TasksController extends Controller
 
         return response()->json($tasks, 200);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id)
+    {
+        $task = $this->taskRepository->skipPresenter()->find($id);
+
+        return response()->json($task, 200);
+    }
+
 }
