@@ -55,6 +55,7 @@ class TasksController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -62,6 +63,17 @@ class TasksController extends Controller
         $task = $this->taskService->store($request->all());
 
         return response()->json($task, 201);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function destroy($id)
+    {
+        $this->taskService->destroy($id);
+        return response()->json([], 204);
     }
 
 }

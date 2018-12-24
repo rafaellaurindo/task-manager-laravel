@@ -47,4 +47,12 @@ class TaskServices
         return $task;
     }
 
+    /**
+     * @param $id
+     */
+    public function destroy($id)
+    {
+        $this->taskRepository->delete($id);
+    }
+
 }
