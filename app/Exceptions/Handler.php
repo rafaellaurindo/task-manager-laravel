@@ -64,7 +64,8 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ValidatorException) {
             return response()->json([
-                'exception'  => get_class($exception),
+                'error'     =>  'true',
+                'exception'  => $this->getExceptionClass($exception),
                 'message'    => $exception->getMessageBag(),
             ], 400);
         }
@@ -78,9 +79,11 @@ class Handler extends ExceptionHandler
         }
 
         return response()->json([
-            'exception'  => $exception->getClass(),
+            'error'     =>  'true',
+            'exception'  => $this->getExceptionClass($exception),
+            'http_code'       => $exception->getStatusCode(),
             'message'    => $message,
-            'trace'      => $this->getTrace($exception)
+            'trace'      => $this->getTrace($exception),
         ], $exception->getStatusCode());
     }
 
@@ -88,6 +91,15 @@ class Handler extends ExceptionHandler
     {
         if (config('app.debug')) {
             return 'file: ' . $exception->getFile() . ' line: ' . $exception->getLine();
+        }
+
+        return null;
+    }
+
+    private function getExceptionClass($exception)
+    {
+        if (config('app.debug')) {
+            return get_class($exception);
         }
 
         return null;
