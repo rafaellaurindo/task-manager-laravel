@@ -25,6 +25,12 @@ class TaskValidator extends LaravelValidator
             'term'  => 'required|date',
             'completed' => 'required|boolean'
         ],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_UPDATE => [
+            'name'   => 'max:255',
+            'description'   => 'max:255',
+            'priority'  => "in:Baixa,baixa,Media,media,Alta,alta,Muito Alta,muito alta",
+            'term'  => 'date',
+            'completed' => 'boolean'
+        ]
     ];
 }

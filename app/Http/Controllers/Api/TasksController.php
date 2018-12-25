@@ -66,6 +66,20 @@ class TasksController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $task = $this->taskService->update($request->all(), $id);
+
+        return response()->json($task, 202);
+    }
+
+    /**
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */

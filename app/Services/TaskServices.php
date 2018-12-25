@@ -48,6 +48,20 @@ class TaskServices
     }
 
     /**
+     * @param array $request
+     * @param $id
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function update(array $request, $id)
+    {
+        $this->taskValidator->with($request)->setId($id)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        $task = $this->taskRepository->update($request, $id);
+
+        return $task;
+    }
+
+    /**
      * @param $id
      */
     public function destroy($id)
