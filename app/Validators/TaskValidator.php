@@ -22,14 +22,14 @@ class TaskValidator extends LaravelValidator
             'name'   => 'required|max:255',
             'description'   => 'required|max:255',
             'priority'  => "required|in:Baixa,baixa,Media,media,Alta,alta,Muito Alta,muito alta",
-            'term'  => 'required|date',
+            'term'  => 'required|date_format:Y-m-d H:i:s',
             'completed' => 'required|boolean'
         ],
         ValidatorInterface::RULE_UPDATE => [
             'name'   => 'max:255',
             'description'   => 'max:255',
             'priority'  => "in:Baixa,baixa,Media,media,Alta,alta,Muito Alta,muito alta",
-            'term'  => 'date',
+            'term'  => 'date_format:Y-m-d H:i:s',
             'completed' => 'boolean'
         ]
     ];
