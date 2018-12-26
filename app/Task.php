@@ -29,6 +29,6 @@ class Task extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'priority', 'term', 'completed'
+        'name', 'description', 'priority', 'term', 'is_completed'
     ];
 }

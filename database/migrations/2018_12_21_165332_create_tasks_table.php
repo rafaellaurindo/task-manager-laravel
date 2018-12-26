@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('description');
             $table->enum('priority',['Baixa', 'Média', 'Alta', 'Muito Alta']);
             $table->dateTime('term');
-            $table->enum('completed',[0, 1]);
+            $table->enum('is_completed',[0, 1]);
             $table->timestamps();
         });
     }

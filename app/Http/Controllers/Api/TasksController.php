@@ -148,7 +148,7 @@ class TasksController extends Controller
      *          )
      *      ),
      *      @OA\Parameter(
-     *          name="completed",
+     *          name="is_completed",
      *          description="Task is completed?",
      *          required=true,
      *          in="query",
@@ -231,7 +231,7 @@ class TasksController extends Controller
      *          )
      *      ),
      *      @OA\Parameter(
-     *          name="completed",
+     *          name="is_completed",
      *          description="Task is completed?",
      *          required=false,
      *          in="query",
