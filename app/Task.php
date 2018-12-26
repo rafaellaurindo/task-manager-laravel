@@ -31,4 +31,15 @@ class Task extends Model implements Transformable
     protected $fillable = [
         'name', 'description', 'priority', 'term', 'is_completed'
     ];
+
+    /**
+     * Always store the priority attribute with first character
+     * of each word in value as uppercase.
+     *
+     * @param $value
+     */
+    public function setPriorityAttribute($value)
+    {
+        $this->attributes['priority'] = ucwords($value);
+    }
 }
