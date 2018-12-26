@@ -16,6 +16,17 @@ use Prettus\Repository\Criteria\RequestCriteria;
 class TaskRepositoryEloquent extends BaseRepository implements TaskRepository
 {
     /**
+     * Fields searchable
+     *
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'name' => 'like',
+        'description' => 'like',
+        'priority'
+    ];
+
+    /**
      * Specify Model class name
      *
      * @return string

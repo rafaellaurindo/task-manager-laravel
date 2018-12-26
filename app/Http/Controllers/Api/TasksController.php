@@ -49,6 +49,15 @@ class TasksController extends Controller
      *              type="integer"
      *          )
      *      ),
+     *      @OA\Parameter(
+     *          name="search",
+     *          description="Search by task name, description or priority.",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
      *      @OA\Response(response=200, description="Successful operation"),
      *      @OA\Response(response=400, description="Bad request"),
      *      @OA\Response(response=404, description="Resource Not Found"),
@@ -62,8 +71,8 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
-        $limit = $request->limit ?? 10;
-        $tasks = $this->taskRepository->skipPresenter()->paginate($limit);
+        $this->taskRepository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $tasks = $this->taskRepository->paginate($request->limit ?? 10);
 
         return response()->json($tasks, 200);
     }
