@@ -17,10 +17,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=task-manager
-      - MYSQL_DATABASE=task-manager
-      - MYSQL_USER=task-manager
-      - MYSQL_PASSWORD=task-manager
+      - MYSQL_ROOT_PASSWORD=taskmanager_pass
+      - MYSQL_DATABASE=taskmanager_db
+      - MYSQL_USER=taskmanager_user
+      - MYSQL_PASSWORD=taskmanager_pass
 
   # PHP (with Caddy)
   app:
