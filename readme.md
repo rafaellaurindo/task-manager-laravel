@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-To run this application, you will only need to have [Docker](https://www.docker.com/) installed on your machine.
+To run this application, you will need to have [Docker](https://www.docker.com/) installed on your machine. Make sure that ports **80** and **3306** are **not being used** the moment the containers are uploaded.
 
 ### Running
 
