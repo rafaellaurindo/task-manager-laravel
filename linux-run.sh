@@ -13,7 +13,7 @@ docker exec -it task-manager-app composer install
 echo [+] Generating key
 docker exec -it task-manager-app php artisan key:generate
 
-sleep 5
+sleep 30
 
 echo [+] Creating database for tests
 docker exec -it task-manager-mysql mysql -u root -ptaskmanager_pass -e "CREATE DATABASE IF NOT EXISTS taskmanager_db_testing;" -f
