@@ -36,11 +36,11 @@ Finally, run the script:
 ./linux-run.sh
 ```
 
-Great! If everything is running fine, the application will already be running at [http://localhost/]().
+Great! If everything is running fine, the application will already be running at [http://localhost/](http://localhost/).
 
 ## Api Documentation
 
-To view the api documentation, with the active containers, go to [http://localhost/api/documentation]().
+To view the api documentation, with the active containers, go to [http://localhost/api/documentation](http://localhost/api/documentation).
 
 ## Running the tests
 
@@ -62,7 +62,7 @@ Remember to grant execute permission also for this script.
 ## Built With
 
 * [Docker](https://www.docker.com/) - Used to automatize the running and deploy
-* [Laravel](http://laravel.com) - The web framework used
+* [Laravel](https://laravel.com) - The web framework used
 * [MySQL](https://www.mysql.com/) - DBMS used
 * [Swagger](https://swagger.io/) - Dependency used to generate the API documentation
 
