@@ -63,8 +63,8 @@ Remember to grant execute permission also for this script.
 
 * [Docker](https://www.docker.com/) - Used to automatize the running and deploy
 * [Laravel](http://laravel.com) - The web framework used
-* [MySQL](https://www.docker.com/) - DBMS used
-* [Swagger](https://www.docker.com/) - Dependency used to generate the API documentation
+* [MySQL](https://www.mysql.com/) - DBMS used
+* [Swagger](https://swagger.io/) - Dependency used to generate the API documentation
 
 ## Contributing
 
@@ -82,4 +82,4 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-* The commits used pattern can be seen in more detail in: [https://github.com/rafaelfilholm/fluxo-trabalho/blob/master/desenvolvimento/git-flow.md]().
+* The commits used pattern can be seen in more detail in [this link](https://github.com/rafaelfilholm/fluxo-trabalho/blob/master/desenvolvimento/git-flow.md).
